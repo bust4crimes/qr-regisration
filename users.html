@@ -2,25 +2,34 @@
 <html>
 <head>
 
-<title>Registered Users</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Registered Participants</title>
 
 <style>
 
 body{
 font-family:Arial;
-margin:0;
 background:linear-gradient(135deg,#6dd5ed,#2193b0);
-padding:20px;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
 .container{
 background:white;
-padding:20px;
+padding:30px;
 border-radius:12px;
+width:95%;
 max-width:800px;
-margin:auto;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
 }
 
 table{
@@ -28,25 +37,48 @@ width:100%;
 border-collapse:collapse;
 }
 
-th,td{
-padding:10px;
-border-bottom:1px solid #ccc;
-text-align:left;
-}
-
 th{
 background:#2193b0;
 color:white;
+padding:12px;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+tr:hover{
+background:#f5f5f5;
 }
 
 button{
 margin-top:20px;
 padding:12px;
-background:#2193b0;
-color:white;
+width:120px;
 border:none;
 border-radius:6px;
+background:#2193b0;
+color:white;
+font-size:16px;
 cursor:pointer;
+}
+
+button:hover{
+background:#176b82;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.count{
+font-weight:bold;
+color:#2193b0;
 }
 
 </style>
@@ -57,10 +89,14 @@ cursor:pointer;
 
 <div class="container">
 
-<h2>Registered Participants</h2>
+<div class="topbar">
+<h1>Registered Participants</h1>
+<div class="count" id="count"></div>
+</div>
 
-<table id="table">
+<table>
 
+<thead>
 <tr>
 <th>Name</th>
 <th>Address</th>
@@ -68,6 +104,9 @@ cursor:pointer;
 <th>Contact</th>
 <th>Gender</th>
 </tr>
+</thead>
+
+<tbody id="userTable"></tbody>
 
 </table>
 
@@ -77,24 +116,29 @@ cursor:pointer;
 
 <script>
 
-let users=JSON.parse(localStorage.getItem("users"))||[]
+let users = JSON.parse(localStorage.getItem("users")) || [];
 
-let table=document.getElementById("table")
+let table = document.getElementById("userTable");
 
-users.forEach(user=>{
+document.getElementById("count").innerText =
+"Total: " + users.length;
 
-let row=table.insertRow()
+users.forEach(user => {
 
-row.insertCell(0).innerText=user.name
-row.insertCell(1).innerText=user.address
-row.insertCell(2).innerText=user.age
-row.insertCell(3).innerText=user.contact
-row.insertCell(4).innerText=user.gender
+let row = `<tr>
+<td>${user.name}</td>
+<td>${user.address}</td>
+<td>${user.age}</td>
+<td>${user.contact}</td>
+<td>${user.gender}</td>
+</tr>`;
 
-})
+table.innerHTML += row;
+
+});
 
 function goBack(){
-window.location.href="index.html"
+window.location.href="index.html";
 }
 
 </script>

@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Program Registration</title>
+<title>Registration Complete</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,51 +18,31 @@ align-items:center;
 background:linear-gradient(135deg,#6dd5ed,#2193b0);
 }
 
-.container{
+.box{
 background:white;
-padding:35px;
+padding:40px;
 border-radius:15px;
 width:90%;
 max-width:500px;
+text-align:center;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-h2{
-text-align:center;
+.check{
+font-size:60px;
 color:#2193b0;
-margin-bottom:20px;
-font-size:28px;
-}
-
-input,select{
-width:100%;
-padding:14px;
-margin:10px 0;
-font-size:16px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-input:focus,select:focus{
-outline:none;
-border-color:#2193b0;
 }
 
 button{
-width:100%;
+margin-top:25px;
 padding:16px;
-margin-top:10px;
 font-size:18px;
+width:100%;
 background:#2193b0;
 color:white;
 border:none;
 border-radius:8px;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-background:#1b7c95;
 }
 
 </style>
@@ -71,31 +51,25 @@ background:#1b7c95;
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<h2>Program Registration</h2>
+<div class="check">✔</div>
 
-<form action="success.html">
+<h1>Congratulations!</h1>
 
-<input type="text" placeholder="Full Name" required>
+<p>You are now part of the program.</p>
 
-<input type="text" placeholder="Address" required>
-
-<input type="number" placeholder="Age" required>
-
-<input type="text" placeholder="Contact Number" required>
-
-<select required>
-<option value="">Select Gender</option>
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<button type="submit">Register</button>
-
-</form>
+<button onclick="goBack()">OK</button>
 
 </div>
+
+<script>
+
+function goBack(){
+window.location.href="index.html"
+}
+
+</script>
 
 </body>
 </html>

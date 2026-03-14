@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>Registered Users</title>
+<title>Registration Complete</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,41 +11,37 @@
 body{
 font-family:Arial;
 margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 background:linear-gradient(135deg,#6dd5ed,#2193b0);
-padding:20px;
 }
 
-.container{
+.box{
 background:white;
-padding:20px;
-border-radius:12px;
-max-width:800px;
-margin:auto;
+padding:40px;
+border-radius:15px;
+width:90%;
+max-width:500px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
-padding:10px;
-border-bottom:1px solid #ccc;
-text-align:left;
-}
-
-th{
-background:#2193b0;
-color:white;
+.check{
+font-size:60px;
+color:#2193b0;
 }
 
 button{
-margin-top:20px;
-padding:12px;
+margin-top:25px;
+padding:16px;
+font-size:18px;
+width:100%;
 background:#2193b0;
 color:white;
 border:none;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
 }
 
@@ -55,43 +51,19 @@ cursor:pointer;
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<h2>Registered Participants</h2>
+<div class="check">✔</div>
 
-<table id="table">
+<h1>Congratulations!</h1>
 
-<tr>
-<th>Name</th>
-<th>Address</th>
-<th>Age</th>
-<th>Contact</th>
-<th>Gender</th>
-</tr>
+<p>You are now part of the program.</p>
 
-</table>
-
-<button onclick="goBack()">Back</button>
+<button onclick="goBack()">OK</button>
 
 </div>
 
 <script>
-
-let users=JSON.parse(localStorage.getItem("users"))||[]
-
-let table=document.getElementById("table")
-
-users.forEach(user=>{
-
-let row=table.insertRow()
-
-row.insertCell(0).innerText=user.name
-row.insertCell(1).innerText=user.address
-row.insertCell(2).innerText=user.age
-row.insertCell(3).innerText=user.contact
-row.insertCell(4).innerText=user.gender
-
-})
 
 function goBack(){
 window.location.href="index.html"

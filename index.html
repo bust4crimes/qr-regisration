@@ -41,6 +41,11 @@ input,select{
   border:1px solid #ccc;
 }
 
+input:focus, select:focus{
+  outline:none;
+  border-color:#2193b0;
+}
+
 button{
   width:100%;
   padding:16px;
@@ -62,7 +67,6 @@ button:hover{
   margin-top:10px;
   background:#555;
 }
-
 </style>
 
 </head>
@@ -98,25 +102,30 @@ button:hover{
 function registerUser(event){
   event.preventDefault();
 
-  let name = document.getElementById("name").value;
-  let address = document.getElementById("address").value;
-  let age = document.getElementById("age").value;
-  let contact = document.getElementById("contact").value;
+  let name = document.getElementById("name").value.trim();
+  let address = document.getElementById("address").value.trim();
+  let age = document.getElementById("age").value.trim();
+  let contact = document.getElementById("contact").value.trim();
   let gender = document.getElementById("gender").value;
+
+  if(!name || !address || !age || !contact || !gender){
+    alert("Please fill out all fields.");
+    return;
+  }
+
+  let newUser = {name, address, age, contact, gender};
 
   let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  // Create new user object
-  let newUser = {name, address, age, contact, gender};
+  // Check for duplicate by name + contact
+  let exists = users.some(u => u.name === name && u.contact === contact);
+  if(!exists){
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+  }
 
-  // Save user to localStorage
-  users.push(newUser);
-  localStorage.setItem("users", JSON.stringify(users));
-
-  // Reset form
   document.getElementById("regForm").reset();
 
-  // Go to success page
   window.location.href = "success.html";
 }
 
